@@ -1,248 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ultra Fancy Site</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next Gen UI</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-    body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      overflow-x: hidden;
-    }
+body {
+  background: #0a0f1c;
+  color: white;
+  overflow-x: hidden;
+}
 
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      padding: 20px 40px;
-      backdrop-filter: blur(15px);
-      background: rgba(255,255,255,0.05);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
+/* Animated background blobs */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
 
-    header h1 {
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+.blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #00c6ff, transparent);
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+}
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: white;
-      transition: 0.3s;
-    }
+.blob:nth-child(2) {
+  left: 60%;
+  top: 40%;
+  animation-delay: 3s;
+}
 
-    nav a:hover {
-      color: #00c6ff;
-    }
+@keyframes float {
+  0%,100% {transform: translateY(0);}
+  50% {transform: translateY(-50px);}
+}
 
-    section {
-      min-height: 100vh;
-      padding: 120px 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+/* Header */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 20px 40px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+}
 
-    .glass {
-      background: rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 50px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      max-width: 800px;
-      animation: fadeIn 1.5s ease;
-    }
+nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    h2 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+nav a:hover {color:#00c6ff;}
 
-    p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
+/* Sections */
+section {
+  min-height: 100vh;
+  padding: 120px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-    /* Chat Button */
-    .chat-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 0 20px rgba(0, 198, 255, 0.7);
-      transition: 0.3s;
-      z-index: 1000;
-    }
+.glass {
+  background: rgba(255,255,255,0.08);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  max-width: 900px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
 
-    .chat-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px rgba(0, 198, 255, 1);
-    }
+/* Hero typing */
+.typing {
+  font-size: 2.5rem;
+  border-right: 3px solid #00c6ff;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
-    .chat-btn span {
-      font-size: 28px;
-    }
+/* Features grid */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 20px;
+}
 
-    /* Chat Box */
-    .chat-box {
-      position: fixed;
-      bottom: 110px;
-      right: 25px;
-      width: 300px;
-      height: 400px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      border-radius: 15px;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
+.card {
+  padding: 25px;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.05);
+  transition: 0.3s;
+}
 
-    .chat-header {
-      padding: 15px;
-      background: rgba(0,0,0,0.3);
-      font-weight: bold;
-    }
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 20px #00c6ff;
+}
 
-    .chat-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      font-size: 0.9rem;
-    }
+/* Stats */
+.stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
 
-    .chat-input {
-      display: flex;
-      border-top: 1px solid rgba(255,255,255,0.2);
-    }
+.stat h2 {
+  font-size: 2.5rem;
+  color: #00c6ff;
+}
 
-    .chat-input input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: white;
-    }
+/* Contact */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
 
-    .chat-input button {
-      padding: 10px;
-      background: #0072ff;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
+button {
+  padding: 10px 20px;
+  background: #0072ff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-  </style>
+/* Chat */
+.chat-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow: 0 0 20px #00c6ff;
+}
+
+.chat-box {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 320px;
+  height: 420px;
+  display:none;
+  flex-direction: column;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 15px;
+}
+
+.chat-header {
+  padding: 15px;
+  background: #0072ff;
+}
+
+.chat-messages {
+  flex:1;
+  padding:10px;
+  overflow-y:auto;
+}
+
+.chat-input {
+  display:flex;
+}
+
+.chat-input input {
+  flex:1;
+  border:none;
+  padding:10px;
+}
+
+.chat-input button {
+  background:#00c6ff;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="bg">
+  <div class="blob"></div>
+  <div class="blob"></div>
+</div>
+
 <header>
-  <h1>FUTURE UI</h1>
+  <h2>NextGen</h2>
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#stats">Stats</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section id="home">
   <div class="glass">
-    <h2>Welcome to the Future</h2>
-    <p>This is an ultra-modern, animated, glassmorphism-powered website with smooth interactions and clean design.</p>
+    <div class="typing" id="typing"></div>
   </div>
 </section>
 
-<section id="about">
+<section id="about" class="reveal">
   <div class="glass">
-    <h2>About This Project</h2>
-    <p>This page uses advanced CSS effects, gradients, blur, and JavaScript interactions to create a premium futuristic experience.</p>
+    <h2>About</h2>
+    <p>This is a futuristic UI with animations, AI chat, and smooth interactions.</p>
   </div>
 </section>
 
-<!-- Chat Button -->
-<div class="chat-btn" onclick="toggleChat()">
-  <span>💬</span>
-</div>
+<section id="features" class="reveal">
+  <div class="glass">
+    <h2>Features</h2>
+    <div class="features">
+      <div class="card">⚡ Fast UI</div>
+      <div class="card">🎨 Modern Design</div>
+      <div class="card">🤖 AI Chat</div>
+      <div class="card">🌌 Cool Effects</div>
+    </div>
+  </div>
+</section>
 
-<!-- Chat Box -->
+<section id="stats" class="reveal">
+  <div class="glass stats">
+    <div class="stat">
+      <h2 id="num1">0</h2>
+      <p>Users</p>
+    </div>
+    <div class="stat">
+      <h2 id="num2">0</h2>
+      <p>Projects</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="glass">
+    <h2>Contact</h2>
+    <input placeholder="Name">
+    <input placeholder="Email">
+    <textarea placeholder="Message"></textarea>
+    <button>Send</button>
+  </div>
+</section>
+
+<!-- Chat -->
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
 <div class="chat-box" id="chatBox">
-  <div class="chat-header">Live Chat</div>
+  <div class="chat-header">AI Friend 🤖</div>
   <div class="chat-messages" id="messages"></div>
   <div class="chat-input">
-    <input type="text" id="chatInput" placeholder="Type a message...">
+    <input id="chatInput" placeholder="Ask me anything...">
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
 
 <script>
-  function toggleChat() {
-    const box = document.getElementById("chatBox");
-    box.style.display = box.style.display === "flex" ? "none" : "flex";
+// Typing effect
+const text = "Welcome to the Future Experience 🚀";
+let i = 0;
+function typing() {
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 50);
   }
+}
+typing();
 
-  function sendMessage() {
-    const input = document.getElementById("chatInput");
-    const messages = document.getElementById("messages");
-
-    if (input.value.trim() === "") return;
-
-    const msg = document.createElement("div");
-    msg.textContent = "You: " + input.value;
-    messages.appendChild(msg);
-
-    setTimeout(() => {
-      const reply = document.createElement("div");
-      reply.textContent = "Bot: That’s a fancy message 😎";
-      messages.appendChild(reply);
-      messages.scrollTop = messages.scrollHeight;
-    }, 600);
-
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
-  }
-
-  // Smooth scrolling
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        behavior: 'smooth'
-      });
-    });
+// Reveal on scroll
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    if(el.getBoundingClientRect().top < window.innerHeight - 50){
+      el.classList.add("active");
+    }
   });
+});
+
+// Counter animation
+function animateValue(id, end) {
+  let start = 0;
+  let duration = 2000;
+  let increment = end / (duration/20);
+  let obj = document.getElementById(id);
+
+  let counter = setInterval(() => {
+    start += increment;
+    obj.innerText = Math.floor(start);
+    if(start >= end) clearInterval(counter);
+  },20);
+}
+
+animateValue("num1", 5000);
+animateValue("num2", 120);
+
+// Chat
+function toggleChat(){
+  let box = document.getElementById("chatBox");
+  box.style.display = box.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage(){
+  let input = document.getElementById("chatInput");
+  let messages = document.getElementById("messages");
+
+  if(input.value.trim() === "") return;
+
+  let msg = document.createElement("div");
+  msg.innerText = "You: " + input.value;
+  messages.appendChild(msg);
+
+  setTimeout(() => {
+    let reply = document.createElement("div");
+    reply.innerText = "AI: That's actually really interesting 😄";
+    messages.appendChild(reply);
+    messages.scrollTop = messages.scrollHeight;
+  }, 500);
+
+  input.value = "";
+}
 </script>
 
 </body>
