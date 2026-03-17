@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ultra Fancy Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      padding: 20px 40px;
+      backdrop-filter: blur(15px);
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00c6ff;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 120px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 50px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      max-width: 800px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Chat Button */
+    .chat-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 198, 255, 0.7);
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .chat-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 198, 255, 1);
+    }
+
+    .chat-btn span {
+      font-size: 28px;
+    }
+
+    /* Chat Box */
+    .chat-box {
+      position: fixed;
+      bottom: 110px;
+      right: 25px;
+      width: 300px;
+      height: 400px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 15px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    .chat-header {
+      padding: 15px;
+      background: rgba(0,0,0,0.3);
+      font-weight: bold;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: white;
+    }
+
+    .chat-input button {
+      padding: 10px;
+      background: #0072ff;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>FUTURE UI</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section id="home">
+  <div class="glass">
+    <h2>Welcome to the Future</h2>
+    <p>This is an ultra-modern, animated, glassmorphism-powered website with smooth interactions and clean design.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="glass">
+    <h2>About This Project</h2>
+    <p>This page uses advanced CSS effects, gradients, blur, and JavaScript interactions to create a premium futuristic experience.</p>
+  </div>
+</section>
+
+<!-- Chat Button -->
+<div class="chat-btn" onclick="toggleChat()">
+  <span>💬</span>
+</div>
+
+<!-- Chat Box -->
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">Live Chat</div>
+  <div class="chat-messages" id="messages"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  function toggleChat() {
+    const box = document.getElementById("chatBox");
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("chatInput");
+    const messages = document.getElementById("messages");
+
+    if (input.value.trim() === "") return;
+
+    const msg = document.createElement("div");
+    msg.textContent = "You: " + input.value;
+    messages.appendChild(msg);
+
+    setTimeout(() => {
+      const reply = document.createElement("div");
+      reply.textContent = "Bot: That’s a fancy message 😎";
+      messages.appendChild(reply);
+      messages.scrollTop = messages.scrollHeight;
+    }, 600);
+
+    input.value = "";
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
