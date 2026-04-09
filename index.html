@@ -3,211 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Next Gen UI</title>
+<title>Digital Library</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
 
-body {
-  background: #0a0f1c;
-  color: white;
-  overflow-x: hidden;
+body{
+  background:#1a1410;
+  color:#f5e6cc;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
 }
 
-/* Animated background blobs */
-.bg {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
+/* floating paper glow */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
 }
 
-.blob {
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #00c6ff, transparent);
-  border-radius: 50%;
-  animation: float 10s infinite ease-in-out;
+.blob{
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle, rgba(245,230,204,0.15), transparent);
+  border-radius:50%;
+  animation:float 12s infinite ease-in-out;
 }
 
-.blob:nth-child(2) {
-  left: 60%;
-  top: 40%;
-  animation-delay: 3s;
+.blob:nth-child(2){
+  left:60%;
+  top:40%;
+  animation-delay:4s;
 }
 
-@keyframes float {
-  0%,100% {transform: translateY(0);}
-  50% {transform: translateY(-50px);}
+@keyframes float{
+  0%,100%{transform:translateY(0);} 
+  50%{transform:translateY(-40px);} 
 }
 
-/* Header */
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  padding: 20px 40px;
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.05);
-  display: flex;
-  justify-content: space-between;
-  z-index: 1000;
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  padding:20px 40px;
+  backdrop-filter:blur(10px);
+  background:rgba(30,20,15,0.7);
+  display:flex;
+  justify-content:space-between;
+  z-index:1000;
 }
 
-nav a {
-  margin-left: 20px;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
+h2{font-family:'Playfair Display',serif;color:#e8cfa3;}
+
+nav a{
+  margin-left:20px;
+  color:#f5e6cc;
+  text-decoration:none;
 }
 
-nav a:hover {color:#00c6ff;}
+nav a:hover{color:#e8cfa3;}
 
-/* Sections */
-section {
-  min-height: 100vh;
-  padding: 120px 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+section{
+  min-height:100vh;
+  padding:120px 40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-.glass {
-  background: rgba(255,255,255,0.08);
-  padding: 40px;
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  max-width: 900px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+.card-box{
+  background:rgba(255,248,230,0.05);
+  padding:40px;
+  border-radius:20px;
+  max-width:900px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
 }
 
-/* Hero typing */
-.typing {
-  font-size: 2.5rem;
-  border-right: 3px solid #00c6ff;
-  white-space: nowrap;
-  overflow: hidden;
+.typing{
+  font-size:2.5rem;
+  font-family:'Playfair Display',serif;
+  border-right:3px solid #e8cfa3;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
-/* Features grid */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 20px;
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 
-.card {
-  padding: 25px;
-  border-radius: 15px;
-  background: rgba(255,255,255,0.05);
-  transition: 0.3s;
+.feature{
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,248,230,0.04);
 }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 0 20px #00c6ff;
+.feature:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 15px rgba(232,207,163,0.5);
 }
 
-/* Stats */
-.stats {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+.stats{
+  display:flex;
+  gap:40px;
+  flex-wrap:wrap;
 }
 
-.stat h2 {
-  font-size: 2.5rem;
-  color: #00c6ff;
+.stat h2{
+  font-size:2.5rem;
+  color:#e8cfa3;
 }
 
-/* Contact */
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: none;
-  outline: none;
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
 }
 
-button {
-  padding: 10px 20px;
-  background: #0072ff;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 8px;
+button{
+  padding:10px 20px;
+  background:#8b5e3c;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-/* Chat */
-.chat-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: linear-gradient(135deg,#00c6ff,#0072ff);
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
+button:hover{background:#a47148;}
+
+.chat-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#8b5e3c,#c8a97e);
   display:flex;
   align-items:center;
   justify-content:center;
   cursor:pointer;
-  box-shadow: 0 0 20px #00c6ff;
 }
 
-.chat-box {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  width: 320px;
-  height: 420px;
+.chat-box{
+  position:fixed;
+  bottom:100px;
+  right:20px;
+  width:320px;
+  height:420px;
   display:none;
-  flex-direction: column;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(20px);
-  border-radius: 15px;
+  flex-direction:column;
+  background:rgba(20,15,10,0.9);
+  border-radius:15px;
 }
 
-.chat-header {
-  padding: 15px;
-  background: #0072ff;
+.chat-header{
+  padding:15px;
+  background:#8b5e3c;
 }
 
-.chat-messages {
+.chat-messages{
   flex:1;
   padding:10px;
   overflow-y:auto;
 }
 
-.chat-input {
-  display:flex;
+.chat-input{display:flex;}
+
+.chat-input input{flex:1;padding:10px;border:none;}
+
+.chat-input button{background:#c8a97e;}
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
 }
 
-.chat-input input {
-  flex:1;
-  border:none;
-  padding:10px;
-}
-
-.chat-input button {
-  background:#00c6ff;
-}
-
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 1s;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
 }
 
 </style>
@@ -221,140 +204,134 @@ button {
 </div>
 
 <header>
-  <h2>NextGen</h2>
+  <h2>Library</h2>
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
-    <a href="#features">Features</a>
-    <a href="#stats">Stats</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#stats">Records</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section id="home">
-  <div class="glass">
+  <div class="card-box">
     <div class="typing" id="typing"></div>
   </div>
 </section>
 
 <section id="about" class="reveal">
-  <div class="glass">
-    <h2>About</h2>
-    <p>This is a futuristic UI with animations, AI chat, and smooth interactions.</p>
+  <div class="card-box">
+    <h2>About This Library</h2>
+    <p>A quiet digital space built for thinkers, learners, and explorers of knowledge.</p>
   </div>
 </section>
 
-<section id="features" class="reveal">
-  <div class="glass">
-    <h2>Features</h2>
+<section id="subjects" class="reveal">
+  <div class="card-box">
+    <h2>Subjects</h2>
     <div class="features">
-      <div class="card">⚡ Fast UI</div>
-      <div class="card">🎨 Modern Design</div>
-      <div class="card">🤖 AI Chat</div>
-      <div class="card">🌌 Cool Effects</div>
+      <div class="feature">📐 Mathematics</div>
+      <div class="feature">💻 Computer Science</div>
+      <div class="feature">🔐 Cybersecurity</div>
+      <div class="feature">⚛️ Quantum Theory</div>
     </div>
   </div>
 </section>
 
 <section id="stats" class="reveal">
-  <div class="glass stats">
+  <div class="card-box stats">
     <div class="stat">
       <h2 id="num1">0</h2>
-      <p>Users</p>
+      <p>Pages Studied</p>
     </div>
     <div class="stat">
       <h2 id="num2">0</h2>
-      <p>Projects</p>
+      <p>Concepts Mastered</p>
     </div>
   </div>
 </section>
 
 <section id="contact" class="reveal">
-  <div class="glass">
-    <h2>Contact</h2>
+  <div class="card-box">
+    <h2>Contact the Archive</h2>
     <input placeholder="Name">
     <input placeholder="Email">
     <textarea placeholder="Message"></textarea>
-    <button>Send</button>
+    <button>Submit</button>
   </div>
 </section>
 
-<!-- Chat -->
-<div class="chat-btn" onclick="toggleChat()">💬</div>
+<div class="chat-btn" onclick="toggleChat()">📚</div>
 
 <div class="chat-box" id="chatBox">
-  <div class="chat-header">AI Friend 🤖</div>
+  <div class="chat-header">Study Assistant</div>
   <div class="chat-messages" id="messages"></div>
   <div class="chat-input">
-    <input id="chatInput" placeholder="Ask me anything...">
+    <input id="chatInput" placeholder="Ask a question...">
     <button onclick="sendMessage()">Send</button>
   </div>
 </div>
 
 <script>
-// Typing effect
-const text = "Welcome to the Future Experience 🚀";
+
+const text = "Welcome to the Digital Library";
 let i = 0;
-function typing() {
+function typing(){
   if(i < text.length){
     document.getElementById("typing").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typing, 50);
+    setTimeout(typing,50);
   }
 }
 typing();
 
-// Reveal on scroll
-window.addEventListener("scroll", () => {
-  document.querySelectorAll(".reveal").forEach(el => {
+window.addEventListener("scroll",()=>{
+  document.querySelectorAll(".reveal").forEach(el=>{
     if(el.getBoundingClientRect().top < window.innerHeight - 50){
       el.classList.add("active");
     }
   });
 });
 
-// Counter animation
-function animateValue(id, end) {
-  let start = 0;
-  let duration = 2000;
-  let increment = end / (duration/20);
-  let obj = document.getElementById(id);
-
-  let counter = setInterval(() => {
-    start += increment;
-    obj.innerText = Math.floor(start);
-    if(start >= end) clearInterval(counter);
+function animateValue(id,end){
+  let start=0;
+  let obj=document.getElementById(id);
+  let counter=setInterval(()=>{
+    start+=end/100;
+    obj.innerText=Math.floor(start);
+    if(start>=end) clearInterval(counter);
   },20);
 }
 
-animateValue("num1", 5000);
-animateValue("num2", 120);
+animateValue("num1",3200);
+animateValue("num2",180);
 
-// Chat
 function toggleChat(){
-  let box = document.getElementById("chatBox");
+  let box=document.getElementById("chatBox");
   box.style.display = box.style.display === "flex" ? "none" : "flex";
 }
 
 function sendMessage(){
-  let input = document.getElementById("chatInput");
-  let messages = document.getElementById("messages");
+  let input=document.getElementById("chatInput");
+  let messages=document.getElementById("messages");
 
-  if(input.value.trim() === "") return;
+  if(input.value.trim()==="") return;
 
-  let msg = document.createElement("div");
-  msg.innerText = "You: " + input.value;
+  let msg=document.createElement("div");
+  msg.innerText="You: " + input.value;
   messages.appendChild(msg);
 
-  setTimeout(() => {
-    let reply = document.createElement("div");
-    reply.innerText = "AI: That's actually really interesting 😄";
+  setTimeout(()=>{
+    let reply=document.createElement("div");
+    reply.innerText="Assistant: Let's break that down step by step 📖";
     messages.appendChild(reply);
     messages.scrollTop = messages.scrollHeight;
-  }, 500);
+  },500);
 
-  input.value = "";
+  input.value="";
 }
+
 </script>
 
 </body>
